@@ -1,8 +1,9 @@
 import React from 'react';
+import {ColumnNumber} from "../ColumnNumber/ColumnNumber";
 
 
 function SearchArea(props) {
-    const {getImagesFromSearch} = props;
+    const {getImagesFromSearch, setColumnNumber, columnNumber, setJustifyCenter} = props;
     let input;
 
     function getImageFromGoogle(value) {
@@ -45,6 +46,9 @@ function SearchArea(props) {
     console.log();
     return (
         <div>
+            <ColumnNumber columnNumber={columnNumber}
+                          setColumnNumber={setColumnNumber}
+                          setJustifyCenter={setJustifyCenter}/>
             <form className='search-area__form' onSubmit={event => {
                 event.preventDefault();
                 onInputSubmit(input.value)
