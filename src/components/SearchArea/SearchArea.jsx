@@ -1,42 +1,42 @@
-import React, {memo, useState} from 'react';
+import React from 'react';
 
 
 function SearchArea(props) {
-    // const [inputSearchValue, getInputSearchValue] = useState('');
-    const {getImagesFromSearch, image} = props;
+    const {getImagesFromSearch} = props;
     let input;
-    function getImageFromPixabay(value) {
-        const searchInputValue = value;
-        const imagess = [];
-        let API_KEY = '13135008-ae7bbae4ed67dbd6241ad558b';
-        let URL = `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(searchInputValue)}`;
+
+    function getImageFromGoogle(value) {
+
+        const imagesFromGoogle = [];
+        let cse = '004733479139527503443:ortosxeoty0';
+        let api = 'AIzaSyDqXaAWnnN4ram4ADDMbh-BmeRv_MH5dR0';
+        let URL = `https://www.googleapis.com/customsearch/v1?key=${api}&cx=${cse}&q=${encodeURIComponent(value)}&searchType=image`;
         fetch(URL)
             .then((response) => {
                 console.log(response);
                 return response.json();
             })
             .then((data) => {
-                console.log('hits', data.hits);
-                return data.hits;
+                console.log('hits', data);
+                return data.items;
             })
-            .then((imagesArray) => {
-                console.log(imagesArray[0].largeImageURL);
-                imagesArray.map((imag) => {
-                    imagess.push(imag.largeImageURL);
-                });
-                return imagess
+            .then((items) => {
+                items.map((item) => {
+                    let photo = item.link;
+                    imagesFromGoogle.push(photo);
+                    return imagesFromGoogle;
+                })
             })
             .then(() => {
-                getImagesFromSearch(imagess);
-                console.log('SHO ZA', image);
-            });
+                getImagesFromSearch(imagesFromGoogle);
+            })
+
 
     }
 
     function onInputSubmit(value) {
         console.log('input nash', value);
-        getImageFromPixabay(value);
-
+        getImageFromGoogle(value);
 
 
     }
@@ -45,20 +45,18 @@ function SearchArea(props) {
     console.log();
     return (
         <div>
-            <form onSubmit={event => {
+            <form className='search-area__form' onSubmit={event => {
                 event.preventDefault();
                 onInputSubmit(input.value)
             }}>
                 <input type="text"
                        ref={node => input = node}
                        className='search-area'
-                    // onInput={inputHandler}
+
                 />
                 <button type='submit'>Search</button>
             </form>
-            <ul className='list'>
-                {/*{store.map(()=>{})}*/}
-            </ul>
+
         </div>
     )
 

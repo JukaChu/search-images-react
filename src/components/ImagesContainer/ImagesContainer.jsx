@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import './ImagesContainer.css';
 
 function ImagesContainer(props) {
@@ -7,7 +7,11 @@ function ImagesContainer(props) {
     return (
         <div className='images-container__image'>
             {data.map((oneImage) => {
-                return <img src={oneImage} className='image' alt='image'/>
+                return (
+                    <div className='image__container'>
+                        <img src={oneImage} className='image__picture' alt='imageFromGoogle'/>
+                    </div>
+                )
             })}
 
         </div>

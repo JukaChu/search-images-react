@@ -12,15 +12,16 @@ function App() {
 
     return (
         <>
+            <div className='search'><h1>Search by Google on React</h1></div>
             <SearchArea
                 getImagesFromSearch={getImagesFromSearch}
                 image={imagesFromSearch}/>
             {imagesFromSearch[0]
                 ? <ImagesContainer
                     data={imagesFromSearch}
-                    // getImagesFromSearch={getImagesFromSearch}
+                    getImagesFromSearch={getImagesFromSearch}
                 />
-                : <h1>Try search ur image</h1>
+                : <h1>Your images will displayed there</h1>
             }
 
         </>
