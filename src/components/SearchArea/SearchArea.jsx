@@ -10,8 +10,8 @@ function SearchArea(props) {
 
         const imagesFromGoogle = [];
         let cse = '004733479139527503443:ortosxeoty0';
-        let api = 'AIzaSyDqXaAWnnN4ram4ADDMbh-BmeRv_MH5dR0';
-        let URL = `https://www.googleapis.com/customsearch/v1?key=${api}&cx=${cse}&q=${encodeURIComponent(value)}&searchType=image`;
+        let someString = 'AIzaSyDqXaAWnnN4ram4ADDMbh-BmeRv_MH5dR0';
+        let URL = `https://www.googleapis.com/customsearch/v1?key=${someString}&cx=${cse}&q=${encodeURIComponent(value)}&searchType=image`;
         fetch(URL)
             .then((response) => {
                 console.log(response);
